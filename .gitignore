@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pkl
+.venv/
+venv/
+.idea/
+.vscode/
+
+# результаты расчётов
+results/
+
+# промысловые данные и внутренние документы в репозиторий не входят:
+# публикуется только синтетический участок
+crm_hybrid_model/data/*
+!crm_hybrid_model/data/Block S1/
+crm_hybrid_model/docs/
+data_private/

@@ -1,0 +1,107 @@
+/* Тёмная тема: плоскость страницы #0d0d0d, поверхность графиков и карточек #1a1a19. */
+:root {
+  --page: #0d0d0d; --surface: #1a1a19; --raised: #262624;
+  --ink: #ffffff; --ink2: #c3c2b7; --muted: #898781;
+  --line: #2c2c2a; --line2: #383835; --accent: #3987e5; --critical: #d03b3b;
+}
+html, body { margin: 0; height: 100%; background: var(--page); color: var(--ink2);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 13px; }
+* { box-sizing: border-box; }
+
+/* ---------- каркас ---------- */
+.app { display: grid; grid-template-columns: 330px minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr);
+  height: 100vh; }
+.header { grid-column: 1 / 3; padding: 12px 18px; border-bottom: 1px solid var(--line); background: var(--surface); }
+.title { color: var(--ink); font-size: 18px; font-weight: 600; }
+.subtitle { color: var(--muted); margin-top: 2px; }
+.side { overflow-y: auto; padding: 14px 16px 24px; border-right: 1px solid var(--line); background: var(--surface); }
+.main { overflow-y: auto; min-width: 0; }
+.tab-body { padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+
+/* ---------- левая панель ---------- */
+.side-title { color: var(--ink); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  margin: 18px 0 8px; padding-top: 14px; border-top: 1px solid var(--line); }
+.side-title:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+.field { margin-bottom: 12px; min-width: 0; }
+.lbl { display: block; color: var(--muted); font-size: 12px; margin-bottom: 4px; }
+.hint { color: var(--muted); font-size: 12px; margin-top: 6px; line-height: 1.4; }
+.radio label { display: block; margin: 3px 0; color: var(--ink2); line-height: 1.35; cursor: pointer; }
+.radio input { margin-right: 7px; accent-color: var(--accent); }
+.upload { border: 1px dashed var(--line2); border-radius: 6px; padding: 8px 10px; margin-bottom: 2px;
+  cursor: pointer; background: var(--page); }
+.upload:hover { border-color: var(--accent); }
+.up-title { color: var(--ink); font-weight: 600; margin-right: 8px; }
+.up-hint { color: var(--muted); font-size: 12px; }
+.up-name { color: var(--ink2); font-size: 12px; min-height: 16px; margin: 0 2px 6px; overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap; }
+.btn { width: 100%; padding: 9px 12px; border-radius: 6px; border: 1px solid var(--line2); background: var(--raised);
+  color: var(--ink); font-size: 13px; font-weight: 600; cursor: pointer; margin: 6px 0 10px; }
+.btn.primary { background: var(--accent); border-color: var(--accent); }
+.btn:hover { filter: brightness(1.12); }
+.status { color: var(--ink2); line-height: 1.5; font-size: 12px; }
+.status > div { margin-bottom: 3px; }
+.error { color: var(--ink); background: rgba(208, 59, 59, .16); border-left: 3px solid var(--critical);
+  padding: 8px 10px; border-radius: 4px; line-height: 1.4; }
+.error::before { content: "Ошибка. "; font-weight: 600; }
+
+/* ---------- карточки и сетки ---------- */
+.card { background: var(--surface); border: 1px solid rgba(255, 255, 255, .10); border-radius: 8px;
+  padding: 12px 14px; min-width: 0; }
+.card-title { color: var(--ink); font-size: 14px; font-weight: 600; }
+.card-sub { color: var(--muted); font-size: 12px; margin: 2px 0 6px; line-height: 1.4; }
+.grid-2-1 { display: grid; grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr); gap: 12px; }
+.grid-1-1 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+@media (max-width: 1250px) { .grid-2-1, .grid-1-1 { grid-template-columns: minmax(0, 1fr); } }
+.controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 4px 16px;
+  align-items: start; background: var(--surface); border: 1px solid rgba(255, 255, 255, .10); border-radius: 8px;
+  padding: 12px 14px 4px; }
+.controls .btn { margin: 20px 0 12px; }
+.controls-inner { display: contents; }
+.stack { display: flex; flex-direction: column; gap: 12px; }
+.note { color: var(--ink2); line-height: 1.5; max-width: 1100px; }
+.scroll { overflow: auto; }
+.inp { width: 100%; padding: 7px 9px; border-radius: 4px; border: 1px solid var(--line2); background: var(--raised);
+  color: var(--ink); font-size: 13px; }
+
+/* ---------- плитки с итогами ---------- */
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+.tile { background: var(--surface); border: 1px solid rgba(255, 255, 255, .10); border-radius: 8px; padding: 12px 14px; }
+.tile-label { color: var(--muted); font-size: 12px; }
+.tile-value { color: var(--ink); font-size: 24px; font-weight: 600; margin: 4px 0 2px; }
+.tile-sub { color: var(--muted); font-size: 12px; }
+
+/* ---------- таблицы ---------- */
+.tbl { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.tbl th { position: sticky; top: 0; background: var(--surface); color: var(--muted); font-weight: 500; font-size: 12px;
+  padding: 6px 8px; border-bottom: 1px solid var(--line2); white-space: nowrap; }
+.tbl td { padding: 5px 8px; border-bottom: 1px solid var(--line); color: var(--ink2); white-space: nowrap; }
+.tbl tbody tr:hover td { background: var(--raised); color: var(--ink); }
+
+/* ---------- компоненты Dash (выпадающие списки, ползунки) ---------- */
+.Select-control, .Select-menu-outer, .Select-menu, .Select.is-open > .Select-control,
+.Select.is-focused > .Select-control, .Select.is-focused:not(.is-open) > .Select-control {
+  background-color: var(--raised) !important; border-color: var(--line2) !important; color: var(--ink) !important;
+  box-shadow: none !important; }
+.Select-value-label, .Select--single > .Select-control .Select-value .Select-value-label,
+.Select.has-value.Select--single > .Select-control .Select-value .Select-value-label,
+.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
+  color: var(--ink) !important; }
+.Select-placeholder { color: var(--muted) !important; }
+.Select-input > input { color: var(--ink) !important; }
+.Select-arrow { border-top-color: var(--muted) !important; }
+.Select-clear, .Select-clear-zone { color: var(--muted) !important; }
+.Select--multi .Select-value { background-color: var(--line2) !important; border-color: var(--muted) !important;
+  color: var(--ink) !important; }
+.Select--multi .Select-value-icon { border-right-color: var(--muted) !important; }
+.Select-option, .VirtualizedSelectOption { background-color: var(--raised) !important; color: var(--ink2) !important; }
+.Select-option.is-focused, .VirtualizedSelectFocusedOption { background-color: var(--line2) !important;
+  color: var(--ink) !important; }
+.Select-noresults { color: var(--muted) !important; }
+.rc-slider-rail { background-color: var(--line2) !important; }
+.rc-slider-track { background-color: var(--accent) !important; }
+.rc-slider-handle { border-color: var(--accent) !important; background-color: var(--surface) !important; }
+.rc-slider-dot { border-color: var(--line2) !important; background-color: var(--surface) !important; }
+.rc-slider-dot-active { border-color: var(--accent) !important; }
+.rc-slider-mark-text { color: var(--muted) !important; font-size: 11px; }
+.rc-slider { margin-bottom: 22px; }
+.tab-parent, .tab-container { background: var(--page); }
